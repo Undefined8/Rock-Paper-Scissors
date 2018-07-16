@@ -1,0 +1,24 @@
+{
+  "name": "rock-paper-scissors",
+  "version": "1.0.0",
+  "description": "rock-paper-scissors on ethereum!",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Undefined8/Rock-Paper-Scissors.git"
+  },
+  "keywords": [
+    "ethereum",
+    "web3",
+    "game"
+  ],
+  "author": "Daniel Zamilatskiy",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Undefined8/Rock-Paper-Scissors/issues"
+  },
+  "homepage": "https://github.com/Undefined8/Rock-Paper-Scissors#readme"
+}
