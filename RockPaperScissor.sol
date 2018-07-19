@@ -80,17 +80,31 @@ contract RockPaperScissor{
     }
 
     function determineGameAndReward () public {
-        if(player1 == playState.ROCK && player2 == playState.PAPER){
-            reward(player1Address);
+        if(player1 == playState.ROCK) {
+            if(player2 == playState.SCISSOR){
+                reward(player1Address);
+            }else if(player2 == playState.PAPER){
+                reward(player2Address);
+            }else{
+                tie(player1Address, player2Address);
+            }
+        }else if(player1 == playState.PAPER) {
+            if(player2 == playState.ROCK){
+                reward(player1Address);
+            }else if(player2 == playState.SCISSOR){
+                reward(player2Address);
+            }else{
+                tie(player1Address, player2Address);
+            }
+        }else if(player1 == playState.SCISSOR) {
+            if(player2 == playState.PAPER){
+                reward(player1Address);
+            }else if(player2 == playState.ROCK){
+                reward(player2Address);
+            }else{
+                tie(player1Address, player2Address);
+            }
         }
-        if(player1 == playState.ROCK && player2 == playState.SCISSOR){
-            reward(player1Address);
-        }
-        if(player1 == playState.ROCK && player2 == playState.ROCK){
-            tie(player1Address, player2Address);
-        }
-
-        // TODO: fill in the other 6 possible outcomes
 
         player1Address = 0x0;
         player2Address = 0x0;
