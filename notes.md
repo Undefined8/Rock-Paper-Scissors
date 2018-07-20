@@ -72,3 +72,22 @@ The specific game will have to only define two functions:
         someone's prize! Make sure you reveal.
 */
 ```
+
+We have 
+- `function reveal(string guess, string random) public whenNotPaused` 
+- `function commit(bytes32 hashedCommit) public payable whenNotPaused` 
+
+So probably it works like this:
+
+1. A user Alice chooses their input, say "ROCK", which is a string. They can play this input by calling `commit`. But `commit` doesn't take a string as input. Also, if we were to put "ROCK" as an input, it would be revealed to anyone observer Bob.
+
+2. Instead, Alice _hashes_ the input, with a random salt. Meaning: `hashedCommit = keccak256(input+salt)` (`keccak256` is a hash function).
+
+3. This means that Bob, the observer, can only see a `bytes32` hash, and not the original input.
+
+4. Alice can later call `reveal("ROCK", salt)` to prove that she submitted "ROCK". How? In the smart contract, it is checked that `hashedCommit == keccak256("ROCK", salt)`.
+
+5. When every player has revealed their inputs, the smart contract can decide who is the winner!
+
+A natural question is: what does the salt do?
+Answer: If there is only a finite number of inputs to the game, one can guess the hashed value, by pre-calculating all of them in advance, since `keccak256("ROCK")` always returns the same `bytes32`. Therefore, Alice "salts" her commit with a random string, and as long as she keeps this salt secret, noone can guess her input.
