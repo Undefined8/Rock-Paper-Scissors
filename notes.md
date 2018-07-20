@@ -49,3 +49,26 @@ contract MyGame is Game {
   
 }
  ```
+
+
+# From `Game.sol`
+
+```
+/*
+Dear all, games should inherit form this contract because this contract has the commit/reveal protocol
+The specific game will have to only define two functions:
+
+-- guessCheck(string guess): the function has to error out in if the guess is not compliant with the rules
+-- findWinners(): the function determined the winners and distributes the payouts. 
+
+*/
+
+/*
+    The following two functions are the users gaming interface.
+        -- Call commit to commit a hash of your guess for the game. Its a hash, since
+        you probably dont want other players to see your guess
+        -- Call reveal to reveal your guess. You will not participate in the
+        round if you forget to reveal your guess, but your stake will still become
+        someone's prize! Make sure you reveal.
+*/
+```
