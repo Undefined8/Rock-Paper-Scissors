@@ -3,6 +3,9 @@ dist: trusty
 node_js: stable
 sudo: required
 
+env:
+  - NODE_ENV=production
+  - BABEL_ENV=production
 install:
   - npm install -g truffle
   - npm install
