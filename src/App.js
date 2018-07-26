@@ -7,6 +7,8 @@ import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
+import Routes from './routes'
+
 class App extends Component {
   constructor(props) {
     super(props)
@@ -69,27 +71,7 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
-        <nav className="navbar pure-menu pure-menu-horizontal">
-            <a href="#" className="pure-menu-heading pure-menu-link">Rock Paper Scissors</a>
-        </nav>
-        <main className="container">
-          <div className="pure-g">
-            <div className="pure-u-1-1">
-              <h1 id="header">Pick your wager</h1>
-            </div>
-            <div className="pure-u-1-3">
-              <button className="pure-button">0.01 eth</button>
-            </div>
-            <div className="pure-u-1-3">
-              <button className="pure-button">0.1 eth</button>
-            </div>
-            <div className="pure-u-1-3">
-              <button className="pure-button">1 eth</button>
-            </div>
-          </div>
-        </main>
-      </div>
+      <Routes/>
     );
   }
 }
