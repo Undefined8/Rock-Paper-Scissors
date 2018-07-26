@@ -1,4 +1,7 @@
 # RPS Game on the BlockChain
+
+[![Build Status](https://travis-ci.org/Undefined8/Rock-Paper-Scissors.svg?branch=master)](https://travis-ci.org/Undefined8/Rock-Paper-Scissors)
+
 2 players bet the same amount of Ethereum into a prize pool and play Rock Paper Scissors. Winner gets the prize pool.
 
 ## Rock Paper Scissors
