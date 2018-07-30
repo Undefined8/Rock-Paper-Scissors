@@ -6,7 +6,7 @@ sudo: required
 env:
   - NODE_ENV=development BABEL_ENV=development
 install:
-  - npm install -g truffle solcjs
+  - npm install -g truffle solc
   - npm install
 script:
   - truffle compile
