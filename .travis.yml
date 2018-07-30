@@ -6,11 +6,11 @@ sudo: required
 env:
   - NODE_ENV=production BABEL_ENV=production
 install:
-  - yarn global add truffle
-  - yarn install
+  - npm install -g truffle
+  - npm install
 script:
   - truffle compile
-  - yarn run build
+  - npm run build
 
 deploy:
   provider: pages
