@@ -1,6 +1,7 @@
 {
   "name": "react-box",
   "version": "0.1.0",
+  "homepage": "https://undefined8.github.io/Rock-Paper-Scissors/",
   "private": true,
   "devDependencies": {
     "autoprefixer": "6.5.1",
