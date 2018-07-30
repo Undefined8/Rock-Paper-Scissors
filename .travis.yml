@@ -6,11 +6,10 @@ sudo: required
 env:
   - NODE_ENV=production BABEL_ENV=production
 install:
-  - npm install -g truffle create-react-app
+  - npm install -g truffle
   - npm install
 script:
   - truffle compile
-  - npm install
   - npm run build
 
 deploy:
