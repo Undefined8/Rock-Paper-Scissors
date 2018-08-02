@@ -4,7 +4,7 @@ node_js: stable
 sudo: required
 
 env:
-  - NODE_ENV=development BABEL_ENV=development
+  - NODE_ENV=production BABEL_ENV=production
 install:
   - npm install -g truffle@4.1.13 solc
   - npm install
