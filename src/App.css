@@ -70,3 +70,8 @@ code {
 .center {
   text-align: center;
 }
+
+#rock, #paper, #scissors{
+  height: 50%;
+  text-align: center;
+}
