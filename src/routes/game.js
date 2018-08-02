@@ -33,6 +33,8 @@ export default class Game extends React.Component {
       case 2:
         opponent = 'scissors';
         break;
+      default:
+        break;
     }
 
 
