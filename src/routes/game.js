@@ -17,51 +17,57 @@ export default class Game extends React.Component {
   }
 
   playGame(choice) {
-
-    this.setState({playerChoice: choice});
     let randomNumber = Math.floor(Math.random() * 3)
+
+    let player = choice;
+    let opponent = '';
+    let winner = '';
 
     switch (randomNumber){
       case 0:
-        this.setState({opponentChoice: 'rock'});
+        opponent = 'rock';
         break;
       case 1:
-        this.setState({opponentChoice: 'paper'});
+        opponent = 'paper';
         break;
       case 2:
-        this.setState({opponentChoice: 'scissors'});
+        opponent = 'scissors';
         break;
     }
 
-    let player = this.state.playerChoice;
-    let opponent = this.state.opponentChoice;
 
-
-    if(player == 'rock') {
-        if(opponent == 'scissors'){
-            this.setState({winner: 'You'});
-        }else if(opponent == 'paper'){
-            this.setState({winner: 'Not you'});
+    if(player === 'rock') {
+        if(opponent === 'scissors'){
+            winner = 'You';
+        }else if(opponent === 'paper'){
+            winner = 'Not you';
         }else{
-            this.setState({winner: 'No one'});
+            winner = 'No one';
         }
-    }else if(player == 'paper') {
-        if(opponent == 'rock'){
-            this.setState({winner: 'You'});
-        }else if(opponent == 'scissors'){
-            this.setState({winner: 'Not you'});
+    }else if(player === 'paper') {
+        if(opponent === 'rock'){
+            winner = 'You';
+        }else if(opponent === 'scissors'){
+            winner = 'Not you';
         }else{
-            this.setState({winner: 'No one'});
+            winner = 'No one';
         }
-    }else if(player == 'scissors') {
-        if(opponent == 'paper'){
-            this.setState({winner: 'You'});
-        }else if(opponent == 'rock'){
-            this.setState({winner: 'Not you'});
+    }else if(player === 'scissors') {
+        if(opponent === 'paper'){
+            winner = 'You';
+        }else if(opponent === 'rock'){
+            winner = 'Not you';
         }else{
-            this.setState({winner: 'No one'});
+            winner = 'No one';
         }
     }
+
+    this.setState({
+      playerChoice: player,
+      opponentChoice: opponent,
+      winner: winner
+    })
+
   }
 
   render(){
