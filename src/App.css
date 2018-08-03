@@ -71,7 +71,15 @@ code {
   text-align: center;
 }
 
-#rock, #paper, #scissors{
-  height: 50%;
+#rock-img, #paper-img, #scissors-img{
+  height: 32px;
+}
+.option-button{
   text-align: center;
+}
+.option-button:hover{
+  background-color: #ccc;
+}
+.option-button:active{
+  background-color: #999;
 }

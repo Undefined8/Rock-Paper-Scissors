@@ -33,8 +33,6 @@ export default class Game extends React.Component {
       case 2:
         opponent = 'scissors';
         break;
-      default:
-        break;
     }
 
 
@@ -82,18 +80,18 @@ export default class Game extends React.Component {
               <p className="center">Betting: {this.props.location.state.ether} eth</p>
             </div>
             <div className="pure-u-1-3">
-              <div id="rock">
-                <img src="/res/Rock.png" id="rock"/>
+              <div className="option-button" onClick={() => {this.playGame('rock')}}>
+                <img src="../res/Rock.png" id="rock-img"/>
               </div>
             </div>
             <div className="pure-u-1-3">
-              <div id="paper">
-                <img src="/res/Paper.png" id="paper"/>
+              <div className="option-button" onClick={() => {this.playGame('paper')}}>
+                <img src="../res/Paper.png" id="paper-img"/>
               </div>
             </div>
             <div className="pure-u-1-3">
-              <div id="scissors">
-                <img src="/res/Scissors.png" id="scissors"/>
+              <div className="option-button" onClick={() => {this.playGame('scissors')}}>
+                <img src="../res/Scissors.png" id="scissors-img"/>
               </div>
             </div>
             <div className="pure-u-1-1">
