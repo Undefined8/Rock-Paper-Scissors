@@ -83,17 +83,17 @@ export default class Game extends React.Component {
             </div>
             <div className="pure-u-1-3">
               <div id="rock">
-                <img src="/res/Rock.png" id="rock"/>
+                <img src="/res/Rock.png" id="rock" role="presentation"/>
               </div>
             </div>
             <div className="pure-u-1-3">
               <div id="paper">
-                <img src="/res/Paper.png" id="paper"/>
+                <img src="/res/Paper.png" id="paper" role="presentation"/>
               </div>
             </div>
             <div className="pure-u-1-3">
               <div id="scissors">
-                <img src="/res/Scissors.png" id="scissors"/>
+                <img src="/res/Scissors.png" id="scissors" role="presentation"/>
               </div>
             </div>
             <div className="pure-u-1-1">
