@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
 import getWeb3 from './utils/getWeb3'
 
@@ -9,7 +9,7 @@ import './App.css'
 
 import Routes from './routes'
 
-class App extends Component {
+class App extends React.Component {
   constructor(props) {
     super(props)
 
@@ -22,19 +22,21 @@ class App extends Component {
   componentWillMount() {
     // Get network provider and web3 instance.
     // See utils/getWeb3 for more info.
-
     getWeb3
     .then(results => {
       this.setState({
         web3: results.web3
       })
-
-      // Instantiate contract once web3 provided.
-      this.instantiateContract()
     })
     .catch(() => {
       console.log('Error finding web3.')
     })
+  }
+
+  buttonClick() {
+    if(this.state.web3 != null){
+      this.instantiateContract();
+    }
   }
 
   instantiateContract() {
@@ -71,7 +73,11 @@ class App extends Component {
 
   render() {
     return (
-      <Routes/>
+      <div>
+        <Routes/>
+        <button className="pure-button" onClick={this.buttonClick.bind(this)}>Contract</button>
+        <p>Storage Value: {this.state.storageValue}</p>
+      </div>
     );
   }
 }

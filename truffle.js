@@ -1,4 +1,15 @@
+var HDWalletProvider = require("truffle-hdwallet-provider");
+
+
+var mnemonic = "cement credit pause cinnamon swarm educate strong mother candy pepper female price";
 module.exports = {
-  // See <http://truffleframework.com/docs/advanced/configuration>
-  // to customize your Truffle configuration!
+  networks: {
+    rinkeby: {
+      provider: new HDWalletProvider(mnemonic, "https://rinkeby.infura.io/"),
+      network_id: 4,
+      gas: 4992222,
+      gasPrice: 22000000000 // Specified in Wei
+
+    }
+  }
 };

@@ -71,15 +71,30 @@ code {
   text-align: center;
 }
 
-#rock-img, #paper-img, #scissors-img{
+img.option-icon{
   height: 32px;
 }
-.option-button{
-  text-align: center;
+
+img.option-actor{
+  height: 100px;
 }
+
+.option-button{
+  width: 35px;
+  height: 32px;
+  text-align: center;
+  padding: 5px 15px 5px 15px;
+  margin: 0 auto;
+}
+
 .option-button:hover{
   background-color: #ccc;
 }
+
 .option-button:active{
   background-color: #999;
+}
+
+.flipped{
+  transform: scaleX(-1);
 }

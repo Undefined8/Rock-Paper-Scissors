@@ -33,32 +33,33 @@ export default class Game extends React.Component {
       case 2:
         opponent = 'scissors';
         break;
+      default:
+        break;
     }
-
 
     if(player === 'rock') {
         if(opponent === 'scissors'){
-            winner = 'You';
+            winner = 'You Win';
         }else if(opponent === 'paper'){
-            winner = 'Not you';
+            winner = 'You Lose';
         }else{
-            winner = 'No one';
+            winner = 'Tie';
         }
     }else if(player === 'paper') {
         if(opponent === 'rock'){
-            winner = 'You';
+            winner = 'You Win';
         }else if(opponent === 'scissors'){
-            winner = 'Not you';
+            winner = 'You Lose';
         }else{
-            winner = 'No one';
+            winner = 'Tie';
         }
     }else if(player === 'scissors') {
         if(opponent === 'paper'){
-            winner = 'You';
+            winner = 'You Win';
         }else if(opponent === 'rock'){
-            winner = 'Not you';
+            winner = 'You Lose';
         }else{
-            winner = 'No one';
+            winner = 'Tie';
         }
     }
 
@@ -68,6 +69,19 @@ export default class Game extends React.Component {
       winner: winner
     })
 
+  }
+
+  toImagefromChoice(choice, flipped = false){
+    switch(choice){
+      case "rock":
+        return (<img src="../res/Rock.png" className={"option-actor" + (flipped ? " flipped" : "")} alt="didnt load"/>);
+      case "paper":
+        return (<img src="../res/Paper.png" className={"option-actor" + (flipped ? " flipped" : "")} alt="didnt load"/>);
+      case "scissors":
+        return (<img src="../res/Scissors.png" className={"option-actor" + (flipped ? " flipped" : "")} alt="didnt load"/>);
+      default:
+        break;
+    }
   }
 
   render(){
@@ -81,24 +95,33 @@ export default class Game extends React.Component {
             </div>
             <div className="pure-u-1-3">
               <div className="option-button" onClick={() => {this.playGame('rock')}}>
-                <img src="../res/Rock.png" id="rock-img"/>
+                <img src="../res/Rock.png" className="option-icon" alt="didnt load"/>
               </div>
             </div>
             <div className="pure-u-1-3">
               <div className="option-button" onClick={() => {this.playGame('paper')}}>
-                <img src="../res/Paper.png" id="paper-img"/>
+                <img src="../res/Paper.png" className="option-icon" alt="didnt load"/>
               </div>
             </div>
             <div className="pure-u-1-3">
               <div className="option-button" onClick={() => {this.playGame('scissors')}}>
-                <img src="../res/Scissors.png" id="scissors-img"/>
+                <img src="../res/Scissors.png" className="option-icon" alt="didnt load"/>
               </div>
             </div>
-            <div className="pure-u-1-1">
-              <p>Your choice: {this.state.playerChoice}</p>
-              <p>Opponent choice: {this.state.opponentChoice}</p>
-              <p></p>
-              <p>Winner: {this.state.winner}</p>
+            <div className="pure-u-1-2 center">
+              <p>You</p>
+            </div>
+            <div className="pure-u-1-2 center">
+              <p>Opponent</p>
+            </div>
+            <div className="pure-u-1-2 center">
+              {this.toImagefromChoice(this.state.playerChoice)}
+            </div>
+            <div className="pure-u-1-2 center">
+              {this.toImagefromChoice(this.state.opponentChoice, true)}
+            </div>
+            <div className="pure-u-1-1 center">
+              <p>{this.state.winner}</p>
             </div>
           </div>
         </main>
