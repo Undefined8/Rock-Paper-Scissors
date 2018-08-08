@@ -5,18 +5,39 @@ import '../css/open-sans.css'
 import '../css/pure-min.css'
 import '../App.css'
 
+import getWeb3 from '../utils/getWeb3'
+import RPS from '../../build/contracts/RPS.json'
+
 export default class Game extends React.Component {
 
   constructor(props) {
     super(props);
+
     this.state = {
       playerChoice: '',
       opponentChoice: '',
-      winner: ''
+      winner: '',
+      web3: null,
+      txResult: null,
+      salt: props.salt
     }
   }
 
+  componentWillMount(){
+    getWeb3
+    .then(results => {
+      this.setState({
+        web3: results.web3
+      })
+    })
+    .catch(() => {
+      console.log('Error finding web3.')
+    })
+  }
+
   playGame(choice) {
+
+
     let randomNumber = Math.floor(Math.random() * 3)
 
     let player = choice;
@@ -62,6 +83,31 @@ export default class Game extends React.Component {
             winner = 'Tie';
         }
     }
+
+    const contract = require('truffle-contract');
+    const rps = contract(RPS);
+
+    rps.setProvider(this.state.web3.currentProvider);
+
+    let rpsInstance;
+
+    var wager = this.props.location.state.ether == "0.01" ? 10000000000000000 : (this.props.location.state.ether ==  "0.1" ? 100000000000000000 : 1000000000000000000);
+
+    var gamePlay = player == 'rock' ? 0 : (player == 'scissor' ? 1 : 2)
+    var commitHash = this.state.web3.sha3(""+gamePlay+this.state.salt)
+    console.log("commitHash: " + commitHash)
+
+    this.state.web3.eth.getAccounts((error, accounts) => {
+      rps.deployed().then((instance) => {
+        rpsInstance = instance;
+
+        // TODO: define commitHash
+        return rpsInstance.commit(commitHash, {from: accounts[0], value: wager})
+
+      }).then((result) => {
+        return this.setState({ txResult: result })
+      })
+    })
 
     this.setState({
       playerChoice: player,

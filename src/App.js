@@ -1,13 +1,15 @@
 import React from 'react'
 import SimpleStorageContract from '../build/contracts/SimpleStorage.json'
-import getWeb3 from './utils/getWeb3'
+import RPS from '../build/contracts/RPS.json'
+
 
 import './css/oswald.css'
 import './css/open-sans.css'
 import './css/pure-min.css'
 import './App.css'
 
-import Routes from './routes'
+import Index from './routes/index.js'
+
 
 class App extends React.Component {
   constructor(props) {
@@ -15,22 +17,21 @@ class App extends React.Component {
 
     this.state = {
       storageValue: 0,
-      web3: null
+      web3: null,
+      salt: this.genSalt()
     }
+  }
+
+  genSalt(){
+    var array = new Uint32Array(1);
+    window.crypto.getRandomValues(array);
+    return array[0].toString(16);
   }
 
   componentWillMount() {
     // Get network provider and web3 instance.
     // See utils/getWeb3 for more info.
-    getWeb3
-    .then(results => {
-      this.setState({
-        web3: results.web3
-      })
-    })
-    .catch(() => {
-      console.log('Error finding web3.')
-    })
+
   }
 
   buttonClick() {
@@ -49,10 +50,14 @@ class App extends React.Component {
 
     const contract = require('truffle-contract')
     const simpleStorage = contract(SimpleStorageContract)
+
+    const rps = contract(RPS)
+
     simpleStorage.setProvider(this.state.web3.currentProvider)
+    rps.setProvider(this.state.web3.currentProvider)
 
     // Declaring this for later so we can chain functions on SimpleStorage.
-    var simpleStorageInstance
+    var simpleStorageInstance;
 
     // Get accounts.
     this.state.web3.eth.getAccounts((error, accounts) => {
@@ -74,9 +79,10 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Routes/>
+        <Index web3={this.state.web3} salt={this.state.salt}/>
         <button className="pure-button" onClick={this.buttonClick.bind(this)}>Contract</button>
         <p>Storage Value: {this.state.storageValue}</p>
+        <p>Salt: {this.state.salt}</p>
       </div>
     );
   }
