@@ -91,9 +91,9 @@ export default class Game extends React.Component {
 
     let rpsInstance;
 
-    var wager = this.props.location.state.ether == "0.01" ? 10000000000000000 : (this.props.location.state.ether ==  "0.1" ? 100000000000000000 : 1000000000000000000);
+    var wager = this.props.location.state.ether === "0.01" ? 10000000000000000 : (this.props.location.state.ether ===  "0.1" ? 100000000000000000 : 1000000000000000000);
 
-    var gamePlay = player == 'rock' ? 0 : (player == 'scissor' ? 1 : 2)
+    var gamePlay = player === 'rock' ? 0 : (player === 'scissor' ? 1 : 2)
     var commitHash = this.state.web3.sha3(""+gamePlay+this.state.salt)
     console.log("commitHash: " + commitHash)
 
